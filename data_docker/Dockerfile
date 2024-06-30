@@ -5,8 +5,9 @@ FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y \
     curl \
     iputils-ping \
+    lsof \
+    vim \
     && rm -rf /var/lib/apt/lists/*
 
 # Default command to keep the container running in the background
 CMD ["bash"]
-
