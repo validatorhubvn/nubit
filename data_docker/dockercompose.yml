@@ -2,15 +2,23 @@ version: '3.8'
 
 services:
   nubit1:
-    image: nubit:latest
+    image: validatorhub/nubit:latest
     container_name: nubit-container1
+
     tty: true
     stdin_open: true
     command: ["bash", "-c", "curl -sL1 https://nubit.sh | bash"]
+    volumes:
+      - nubit-data:/nubit-data
+      - nubit-config:/nubit-node/config
+    ports:
+      - "2121:2121"
     deploy:
       restart_policy:
         condition: any
-    build:
-      context: .
-    volumes:
-      - /data_docker:/data_docker
+
+volumes:
+  nubit-data:
+    driver: local
+  nubit-config:
+    driver: local
